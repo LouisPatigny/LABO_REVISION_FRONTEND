@@ -1,0 +1,18 @@
+.cart-popup {
+  position: fixed;
+  top: 50px;
+  right: 20px;
+  background: white;
+  border: 1px solid #ddd;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.cart-popup h2 {
+  margin-top: 0;
+}
+
+.cart-popup button {
+  margin-top: 10px;
+}

@@ -1,0 +1,16 @@
+<div class="product-list">
+  @if (products.length > 0) {
+    @for (product of products; track product.id) {
+      <a [routerLink]="['/merch/product', product.id]">
+        <div class="product-card">
+          <img [src]="product.imageUrl" alt="{{ product.name }}" />
+          <h2>{{ product.name }}</h2>
+          <p>{{ product.description }}</p>
+          <p class="price">{{ product.price | currency }}</p>
+          <p *ngIf="product.stock > 0" class="stock">In Stock: {{ product.stock }}</p>
+          <p *ngIf="product.stock === 0" class="stock out-of-stock">Out of Stock</p>
+        </div>
+      </a>
+    }
+  }
+</div>

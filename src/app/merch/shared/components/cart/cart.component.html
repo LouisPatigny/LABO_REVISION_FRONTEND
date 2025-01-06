@@ -1,0 +1,13 @@
+@if (isCartVisible) {
+  <div class="cart-popup">
+    <h2>Your Cart</h2>
+    @for (item of cartItems; track item.id) {
+      <h3>{{ item.name }}</h3>
+      <p>{{ item.price | currency }} x {{ item.quantity }}</p>
+      <button (click)="removeItem(item.id)">Remove</button>
+    }
+    <h3>Total: {{ total | currency }}</h3>
+    <button (click)="clearCart()">Clear Cart</button>
+    <button (click)="proceedToPayment()">Proceed to Payment</button>
+  </div>
+}
