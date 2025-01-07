@@ -1,13 +1,63 @@
 @if (isCartVisible) {
-  <div class="cart-popup">
-    <h2>Your Cart</h2>
-    @for (item of cartItems; track item.id) {
-      <h3>{{ item.name }}</h3>
-      <p>{{ item.price | currency }} x {{ item.quantity }}</p>
-      <button (click)="removeItem(item.id)">Remove</button>
+  <!-- Backdrop -->
+  <div class="cart-backdrop" (click)="toggleCart()"></div>
+
+  <!-- Container du side-drawer -->
+  <div class="cart-drawer">
+    <div class="cart-header">
+      <h2>Panier</h2>
+      <button class="close-button" (click)="toggleCart()">x</button>
+    </div>
+
+    @if (cartItems.length === 0) {
+      <div class="cart-empty">
+        <p>Votre panier est actuellement vide.</p>
+      </div>
+    } @else {
+      <div class="cart-items">
+        @for (item of cartItems; track item.id) {
+          <div class="cart-item">
+            <div class="cart-item-info">
+              <img [src]="item.imageUrl" alt="{{ item.name }}" />
+              <div class="cart-item-details">
+                <h3>{{ item.name }}</h3>
+                <p>{{ item.price | currency }}</p>
+              </div>
+            </div>
+
+            <div class="cart-item-actions">
+              <!-- Bouton '-' -->
+              <button
+                (click)="decrementQuantity(item.id)"
+                [disabled]="item.quantity === 1"
+              >
+                -
+              </button>
+
+              <!-- Quantité -->
+              <span>{{ item.quantity }}</span>
+
+              <!-- Bouton '+' -->
+              <button
+                (click)="incrementQuantity(item.id)"
+                [disabled]="item.stock != null && item.quantity >= item.stock"
+              >
+                +
+              </button>
+
+              <!-- Bouton poubelle -->
+              <button (click)="removeItem(item.id)">
+                🗑️
+              </button>
+            </div>
+          </div>
+        }
+      </div>
     }
-    <h3>Total: {{ total | currency }}</h3>
-    <button (click)="clearCart()">Clear Cart</button>
-    <button (click)="proceedToPayment()">Proceed to Payment</button>
+
+    <div class="cart-footer">
+      <h3>Total: {{ total | currency }}</h3>
+      <button class="pay-button" (click)="proceedToPayment()">Procéder au paiement</button>
+    </div>
   </div>
 }

@@ -30,7 +30,8 @@ export class ConsulterDetailsComponent implements OnInit {
       name: product.name,
       price: product.price,
       imageUrl: product.imageUrl,
-      quantity: 1
+      quantity: 1,
+      stock: product.stock
     };
     this.cartService.addItem(cartItem);
   }

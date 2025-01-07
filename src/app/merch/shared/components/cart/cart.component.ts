@@ -27,12 +27,24 @@ export class CartComponent {
     );
   }
 
+  toggleCart(): void {
+    this.cartService.toggleCart();
+  }
+
   removeItem(id: number): void {
     this.cartService.removeItem(id);
   }
 
   clearCart(): void {
     this.cartService.clearCart();
+  }
+
+  incrementQuantity(itemId: number): void {
+    this.cartService.incrementQuantity(itemId);
+  }
+
+  decrementQuantity(itemId: number): void {
+    this.cartService.decrementQuantity(itemId);
   }
 
   proceedToPayment(): void {

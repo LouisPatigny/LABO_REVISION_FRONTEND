@@ -1,15 +1,18 @@
 .navbar {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
-  background-color: #333;
+  padding: 20px 40px;
+  width: 100%;
+  background-color: #222;
   color: white;
+  z-index: 999;
+  position: fixed;
 }
 
 .navbar-msg p {
   color: white;
-  margin-right: 15px;
+  margin-right: 1500px;
+  margin-left: 15px;
   text-decoration: none;
 }
 
@@ -17,6 +20,6 @@
   background: none;
   border: none;
   color: white;
-  font-size: 20px;
+  font-size: 25px;
   cursor: pointer;
 }

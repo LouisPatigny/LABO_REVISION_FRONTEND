@@ -1,18 +1,124 @@
-.cart-popup {
+.cart-backdrop {
   position: fixed;
-  top: 50px;
-  right: 20px;
-  background: white;
-  border: 1px solid #ddd;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 998;
+}
+
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 30%;
+  height: 100%;
+  background-color: #222;
+  color: #fff;
   z-index: 1000;
+  display: flex;
+  flex-direction: column;
 }
 
-.cart-popup h2 {
-  margin-top: 0;
+.cart-header {
+  padding: 1.45rem;
+  border-bottom: 1px solid #444;
+  text-align: center;
 }
 
-.cart-popup button {
-  margin-top: 10px;
+.close-button {
+  border: none;
+  background: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  position: absolute;
+  top: 0.75rem;
+  right: 1.25rem;
+}
+
+.cart-items {
+  flex: 1;                /* Pour que ça prenne tout l'espace vertical */
+  overflow-y: auto;       /* Scroll si trop d'items */
+  padding: 1rem;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid #444;
+}
+
+.cart-empty {
+  flex: 1;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.25rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Info (image, nom, etc.) */
+.cart-item-info {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.cart-item-info img {
+  width: 75px;
+  height: 75px;
+  object-fit: cover;
+  align-self: center;
+}
+
+/* Actions (boutons +, -, poubelle) */
+.cart-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.25rem;
+  padding: 0 1rem;
+
+  button {
+    background: none;
+    border: none;
+    padding: 25px;
+    cursor: pointer;
+    color: #fff;
+  }
+}
+
+.cart-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 95%;
+  padding: 1rem;
+  border-top: 1px solid #444;
+  text-align: center;
+
+  h3 {
+    margin-bottom: 15px;
+  }
+}
+
+.pay-button {
+  width: 99%;
+  padding: 0.75rem;
+  background-color: #fff;
+  color: #111;
+  border: none;
+  cursor: pointer;
+  align-self: center;
+  border-radius: 10px;
+}
+
+.pay-button:hover {
+  background-color: #ddd;
 }

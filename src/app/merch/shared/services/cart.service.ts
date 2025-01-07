@@ -49,6 +49,32 @@ export class CartService {
     this.saveCartToLocalStorage();
   }
 
+  incrementQuantity(itemId: number): void {
+    const items = this.cartItems.getValue();
+    const index = items.findIndex(i => i.id === itemId);
+
+    if (index !== -1) {
+      if (items[index].stock == null || items[index].quantity < items[index].stock) {
+        items[index].quantity++;
+        this.cartItems.next([...items]);
+        this.saveCartToLocalStorage();
+      }
+    }
+  }
+
+  decrementQuantity(itemId: number): void {
+    const items = this.cartItems.getValue();
+    const index = items.findIndex(i => i.id === itemId);
+
+    if (index !== -1) {
+      if (items[index].quantity > 1) {
+        items[index].quantity--;
+        this.cartItems.next([...items]);
+        this.saveCartToLocalStorage();
+      }
+    }
+  }
+
   getTotal(): number {
     return this.cartItems.getValue().reduce((acc, item) => acc + item.price * item.quantity, 0);
   }
