@@ -1,32 +1,26 @@
 <div class="navbar-background">
   <nav class="navbar">
-    <div class="navbar-logo">
-      <!-- <img src="assets/logo.png" alt="logo" /> -->
+    <div class="navbar-buttons">
+      <div class="home-button">
+        <button [routerLink]="['/merch']">Home</button>
+      </div>
+
+      @if (authService.currentUser$ | async) {
+        <div class="navbar-button">
+          <button (click)="logout()">Se déconnecter</button>
+        </div>
+        <div class="navbar-button">
+          <button [routerLink]="['/profile']">Mon Profil</button>
+        </div>
+      } @else {
+        <div class="navbar-button">
+          <button [routerLink]="['/auth/login']">Connexion</button>
+        </div>
+        <div class="navbar-button">
+          <button [routerLink]="['/auth/register']">Register</button>
+        </div>
+      }
     </div>
-    <div class="navbar-msg">
-      <p class="msg">Bienvenue sur notre site</p>
-    </div>
-
-    <!--
-
-    <div class="connect-button">
-      <button (click)="toggleLogin()">Connexion</button>
-    </div>
-
-    <div class="connect-button">
-      <button (click)="toggleRegister()">Créer un compte</button>
-    </div>
-
-    <div class="disconnect-button">
-      <button (click)="disconnect()">Se déconnecter</button>
-    </div>
-
-    <div class="profile">
-      <button (click)="toggleProfile()">Mon compte</button>
-    </div>
-
-    -->
-
     <div class="navbar-cart">
       <button (click)="toggleCart()">🛒</button>
     </div>

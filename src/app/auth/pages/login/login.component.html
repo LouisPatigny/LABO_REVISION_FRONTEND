@@ -1,0 +1,29 @@
+<div class="login-container">
+  <h2>Login</h2>
+  <!-- Bind the form to the FormGroup and submit event -->
+  <form [formGroup]="loginForm" (ngSubmit)="submit()">
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <!-- link this input to loginForm.controls.email -->
+      <input
+        type="text"
+        id="email"
+        formControlName="email"
+        placeholder="Enter your email"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <!-- link this input to loginForm.controls.password -->
+      <input
+        type="password"
+        id="password"
+        formControlName="password"
+        placeholder="Enter your password"
+      />
+    </div>
+
+    <button type="submit">Login</button>
+  </form>
+</div>

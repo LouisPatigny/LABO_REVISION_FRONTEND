@@ -1,6 +1,7 @@
 .navbar {
   display: flex;
   align-items: center;
+  justify-content: space-between; /* Ensure elements are spaced correctly */
   padding: 20px 40px;
   width: 100%;
   background-color: #222;
@@ -9,17 +10,22 @@
   position: fixed;
 }
 
-.navbar-msg p {
-  color: white;
-  margin-right: 1500px;
-  margin-left: 15px;
-  text-decoration: none;
+.navbar-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between the buttons */
 }
 
-.navbar-cart button {
-  background: none;
-  border: none;
+.navbar-buttons button {
+  background-color: transparent;
+  border: 1px solid white;
   color: white;
-  font-size: 25px;
+  padding: 5px 10px;
   cursor: pointer;
+}
+
+.navbar-cart {
+  display: flex;
+  align-items: center;
+  transform: translateX(-75px);
 }
