@@ -1,5 +1,5 @@
 export interface UserTokenDTOModel
 {
-  access: string
+  token: string
   refresh: string
 }

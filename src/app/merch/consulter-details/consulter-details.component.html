@@ -1,18 +1,16 @@
 <div class="product-details">
-  <ng-container *ngIf="product; else notFound">
+  @if (product) {
     <h1>{{ product.name }}</h1>
     <img [src]="product.imageUrl" alt="{{ product.name }}" />
     <p>{{ product.description }}</p>
     <p class="price">{{ product.price | currency }}</p>
-    <ng-container *ngIf="product.stock > 0; else outOfStock">
+    @if (product.stock > 0) {
       <p class="stock">In Stock: {{ product.stock }}</p>
       <button (click)="addItem(product)">Add to Cart</button>
-    </ng-container>
-    <ng-template #outOfStock>
+    } @else {
       <p class="stock out-of-stock">Out of Stock</p>
-    </ng-template>
-  </ng-container>
-  <ng-template #notFound>
-    <p>Product not found!</p>
-  </ng-template>
+    }
+  } @else {
+    <p class="not-found">Product not found!</p>
+  }
 </div>

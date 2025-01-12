@@ -14,5 +14,5 @@ export const routes: Routes =
   { path: 'merch/product/:id', component: ConsulterDetailsComponent, resolve: { product: ProductResolver } },
   { path: 'auth/register', component: RegisterComponent },
   { path: 'auth/login', component: LoginComponent },
-  { path: 'profile/:id', component: PageProfilComponent }
+  { path: 'profile', component: PageProfilComponent }
 ];

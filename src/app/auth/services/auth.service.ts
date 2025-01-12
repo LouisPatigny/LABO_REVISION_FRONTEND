@@ -6,6 +6,8 @@ import { environment } from '../../../environments/environment';
 import { UserTokenDTOModel } from '../models/user.token.dto.model';
 import { LoginFormModel } from '../models/login.form.model';
 import { RegisterFormModel } from '../models/register.form.model';
+import { DecodedToken } from '../models/decoded.token.model';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -17,11 +19,10 @@ export class AuthService {
   constructor(
     private readonly _http: HttpClient,
     private readonly _router: Router,
-  )
-  {
+  ) {
     let jsonUser = localStorage.getItem('currentUser');
     this._currentUser$ = new BehaviorSubject<UserTokenDTOModel | undefined>(
-    jsonUser ? JSON.parse(jsonUser) : undefined
+      jsonUser ? JSON.parse(jsonUser) : undefined
     )
   }
 
@@ -46,7 +47,8 @@ export class AuthService {
   logout() {
     this._currentUser$.next(undefined);
     localStorage.removeItem('currentUser');
-    this._router.navigate(['/auth/login']).then(r => {});
+    this._router.navigate(['/auth/login']).then(r => {
+    });
   }
 
   get currentUser(): UserTokenDTOModel | undefined {
@@ -55,5 +57,34 @@ export class AuthService {
 
   get currentUser$(): Observable<UserTokenDTOModel | undefined> {
     return this._currentUser$.asObservable();
+  }
+
+  getCurrentUserId(): number | null {
+    const userToken = this.currentUser;
+    if (!userToken || !userToken.token) {
+      return null;
+    }
+    try {
+      const decoded = jwtDecode<DecodedToken>(userToken.token);
+      // 'sub' est un string dans le JWT — convert to number:
+      return +decoded.sub;
+    } catch (error) {
+      console.error('Token decoding failed:', error);
+      return null;
+    }
+  }
+
+  getCurrentUserEmail(): string | null {
+    const userToken = this.currentUser;
+    if (!userToken || !userToken.token) {
+      return null;
+    }
+    try {
+      const decoded = jwtDecode<DecodedToken>(userToken.token);
+      return decoded.email;
+    } catch (error) {
+      console.error('Token decoding failed:', error);
+      return null;
+    }
   }
 }
