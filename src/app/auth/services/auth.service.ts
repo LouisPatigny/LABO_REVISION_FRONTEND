@@ -51,6 +51,10 @@ export class AuthService {
     });
   }
 
+  isLoggedIn(): boolean {
+    return this.currentUser !== undefined;
+  }
+
   get currentUser(): UserTokenDTOModel | undefined {
     return this._currentUser$.value;
   }

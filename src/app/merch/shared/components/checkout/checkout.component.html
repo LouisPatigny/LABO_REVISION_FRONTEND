@@ -1,0 +1,63 @@
+<div class="checkout-container">
+  <h2>Finaliser ma commande</h2>
+
+  <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+    <!-- Email (if user is not logged in, required) -->
+    <div>
+      <label>Email :</label>
+      <input type="email" formControlName="email">
+      <div *ngIf="checkoutForm.get('email')?.invalid && checkoutForm.get('email')?.touched">
+        <small>Email invalide</small>
+      </div>
+    </div>
+
+    <div>
+      <label>Prénom :</label>
+      <input type="text" formControlName="firstName">
+    </div>
+
+    <div>
+      <label>Nom :</label>
+      <input type="text" formControlName="lastName">
+    </div>
+
+    <div>
+      <label>Adresse ligne 1 :</label>
+      <input type="text" formControlName="addressLine1">
+    </div>
+
+    <div>
+      <label>Adresse ligne 2 :</label>
+      <input type="text" formControlName="addressLine2">
+    </div>
+
+    <div>
+      <label>Ville :</label>
+      <input type="text" formControlName="city">
+    </div>
+
+    <div>
+      <label>Code Postal :</label>
+      <input type="text" formControlName="postalCode">
+    </div>
+
+    <div>
+      <label>Pays :</label>
+      <input type="text" formControlName="country">
+    </div>
+
+    <div>
+      <label>Téléphone :</label>
+      <input type="text" formControlName="phoneNumber">
+    </div>
+
+    <hr>
+    <p>Sous-total: {{ cartTotal | currency:'EUR' }}</p>
+    <p *ngIf="potentialDiscount > 0">Réduction fidélité : -{{ potentialDiscount | currency:'EUR' }}</p>
+    <p>Total: {{ (cartTotal - potentialDiscount) | currency:'EUR' }}</p>
+
+    <button type="submit" [disabled]="checkoutForm.invalid">
+      Valider la commande
+    </button>
+  </form>
+</div>

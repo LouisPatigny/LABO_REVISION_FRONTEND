@@ -92,4 +92,8 @@ export class CartService {
     const items = this.cartItems.getValue();
     localStorage.setItem(this.STORAGE_KEY, JSON.stringify(items));
   }
+
+  getCartItems(): CartItem[] {
+    return this.cartItems.getValue();
+  }
 }

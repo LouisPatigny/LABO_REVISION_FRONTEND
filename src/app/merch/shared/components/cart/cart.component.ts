@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { CartItem } from '../../models/cart.model';
 import { CurrencyPipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
   imports: [
-    CurrencyPipe
+    CurrencyPipe,
   ],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css'
@@ -16,7 +17,10 @@ export class CartComponent {
   total = 0;
   isCartVisible = false;
 
-  constructor(private cartService: CartService) {
+  constructor(
+    private cartService: CartService,
+    private router: Router,
+  ) {
     this.cartService.cartItems$.subscribe((items) => {
       this.cartItems = items;
       this.total = this.cartService.getTotal();
@@ -47,7 +51,7 @@ export class CartComponent {
     this.cartService.decrementQuantity(itemId);
   }
 
-  proceedToPayment(): void {
-    console.log('Proceeding to payment...');
+  goToCheckout() {
+    this.router.navigate(['/merch/checkout']);
   }
 }

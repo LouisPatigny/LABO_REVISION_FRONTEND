@@ -1,0 +1,14 @@
+.checkout-container {
+  padding-top: 100px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.checkout-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkout-container form > div {
+  margin-bottom: 10px;
+}
